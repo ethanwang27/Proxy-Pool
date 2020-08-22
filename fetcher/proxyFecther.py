@@ -13,16 +13,17 @@ import time
 from utils.WebRequest import WebRequest
 from helper.logHepler import LogHelper
 
+
 class ProxyFetcher(object):
 
     def __init__(self):
         super(ProxyFetcher, self).__init__()
 
     @staticmethod
-    def get_kuaidaili_proxy(page_count=1):
+    def get_kuaidaili_proxy(page_count=2):
         """
         获取快代理的高匿代理IP
-        :param page_count:
+        :param page_count: 默认获取前两页（前两页基本是当天更新的代理）
         :return:
         """
         # 快代理的高匿代理URL
@@ -37,6 +38,8 @@ class ProxyFetcher(object):
             time.sleep(2)
             for tr in proxy_list[1:]:
                 yield ':'.join(tr.xpath('./td/text()')[0: 2])
+
+
 
 
 if __name__ == '__main__':
